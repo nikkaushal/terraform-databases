@@ -9,7 +9,7 @@ resource "aws_db_subnet_group" "mysql" {
 
 resource "aws_rds_cluster_parameter_group" "mysql" {
   name        = "mysql-cluster-pg-${var.ENV}"
-  family      = "aurora5.6"
+  family      = "aurora5.7"
   description = "RDS default cluster parameter group"
 }
 
