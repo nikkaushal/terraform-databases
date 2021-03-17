@@ -2,7 +2,7 @@ resource "aws_instance" "mongo" {
   ami                       = data.aws_ami.ami.id
   instance_type             = "t3.small"
   vpc_security_group_ids    = [aws_security_group.allow-mongo.id]
-  key_name                  = "devops"
+  key_name                  = "devopstest1"
   subnet_id                 = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS[0]
 }
 
