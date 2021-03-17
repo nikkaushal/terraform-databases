@@ -62,14 +62,14 @@ resource "aws_security_group" "allow-mysql" {
   }
 }
 
-//resource "null_resource" "mysql-schema" {
-//  provisioner "local-exec" {
-//    command = <<EOF
-//sleep 60
-//rm -rf rs-mysql
-//git clone https://github.com/nikkaushal/rs-mysql.git
-//cd rs-mysql
-//mysql -h ${aws_rds_cluster.mysql.endpoint} -u${jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_USER"]} -p${jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_PASSWORD"]} <shipping.sql
-//EOF
-//  }
-//}
+resource "null_resource" "mysql-schema" {
+  provisioner "local-exec" {
+    command = <<EOF
+sleep 60
+rm -rf rs-mysql
+git clone https://github.com/nikkaushal/rs-mysql.git
+cd rs-mysql
+mysql -h ${aws_rds_cluster.mysql.endpoint} -u${jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_USER"]} -p${jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_PASSWORD"]} <shipping.sql
+EOF
+  }
+}
