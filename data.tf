@@ -14,3 +14,9 @@ data "aws_secretsmanager_secret" "secrets" {
 data "aws_secretsmanager_secret_version" "creds" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
 }
+
+
+data "aws_ami" "ami" {
+  most_recent         = true
+  owners              = ["973714476881"]
+}
