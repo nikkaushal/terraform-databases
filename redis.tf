@@ -46,7 +46,7 @@ resource "aws_elasticache_cluster" "redis" {
 }
 
 output "redis" {
-  value = aws_elasticache_cluster.redis
+  value = aws_elasticache_cluster.redis.cache_nodes[0].address
 }
 
 //resource "aws_route53_record" "redis" {
