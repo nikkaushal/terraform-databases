@@ -1,7 +1,7 @@
 resource "aws_instance" "rabbitmq" {
   ami                       = data.aws_ami.ami.id
   instance_type             = "t3.small"
-  vpc_security_group_ids    = [aws_security_group.allow-mongo.id]
+  vpc_security_group_ids    = [aws_security_group.allow-rabbitmq.id]
   key_name                  = "devopstest1"
   subnet_id                 = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS[0]
   tags = {
