@@ -56,3 +56,11 @@ resource "null_resource" "mongo-schema" {
     ]
   }
 }
+
+resource "aws_route53_record" "mongo" {
+  name        = "mongo-${var.ENV}"
+  type        = "A"
+  zone_id     = data.terraform_remote_state.vpc.outputs.ZONE_ID
+  ttl         = "1000"
+  records     = [aws_instance.mongo.private_ip]
+}

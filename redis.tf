@@ -44,3 +44,11 @@ resource "aws_elasticache_cluster" "redis" {
   port                 = 6379
   subnet_group_name    = aws_elasticache_subnet_group.redis.name
 }
+
+resource "aws_route53_record" "redis" {
+  name        = "redis-${var.ENV}"
+  type        = "CNAME"
+  zone_id     = data.terraform_remote_state.vpc.outputs.ZONE_ID
+  ttl         = "1000"
+  records     = [aws_elasticache_cluster.redis.cluster_address]
+}
