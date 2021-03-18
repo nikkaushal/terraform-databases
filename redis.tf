@@ -49,10 +49,10 @@ output "redis" {
   value = aws_elasticache_cluster.redis.cache_nodes[0].address
 }
 
-//resource "aws_route53_record" "redis" {
-//  name        = "redis-${var.ENV}"
-//  type        = "CNAME"
-//  zone_id     = data.terraform_remote_state.vpc.outputs.ZONE_ID
-//  ttl         = "1000"
-//  records     = [aws_elasticache_cluster.redis.cluster_address]
-//}
+resource "aws_route53_record" "redis" {
+  name        = "redis-${var.ENV}"
+  type        = "CNAME"
+  zone_id     = data.terraform_remote_state.vpc.outputs.ZONE_ID
+  ttl         = "1000"
+  records     = [aws_elasticache_cluster.redis.cache_nodes[0].address]
+}
