@@ -35,7 +35,7 @@ resource "aws_security_group" "allow-redis" {
 }
 
 resource "aws_elasticache_cluster" "redis" {
-  cluster_id           = "redis-${var.ENV}e"
+  cluster_id           = "redis-${var.ENV}"
   engine               = "redis"
   node_type            = "cache.t3.small"
   num_cache_nodes      = 1
