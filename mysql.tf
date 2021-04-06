@@ -16,7 +16,7 @@ resource "aws_rds_cluster_parameter_group" "mysql" {
 resource "aws_rds_cluster" "mysql" {
   cluster_identifier                  = "mysql-${var.ENV}"
   engine                              = "aurora-mysql"
-  engine_version                      = "5.7.mysql_aurora.2.03.2"
+  engine_version                      = "5.7.mysql_aurora.2.07.2"
   db_subnet_group_name                = aws_db_subnet_group.mysql.name
   database_name                       = "defaultdb"
   master_username                     = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_USER"]
