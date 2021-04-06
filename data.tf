@@ -19,4 +19,8 @@ data "aws_secretsmanager_secret_version" "creds" {
 data "aws_ami" "ami" {
   most_recent         = true
   owners              = ["973714476881"]
+  filter {
+    name   = "name"
+    values = ["Centos-7-DevOps-Practice"]
+  }
 }
