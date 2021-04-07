@@ -9,6 +9,7 @@ resource "aws_instance" "mongo" {
   }
 }
 
+//test
 resource "aws_security_group" "allow-mongo" {
   name                    = "allow-mongo-${var.ENV}"
   description             = "allow-mongo-${var.ENV}"
