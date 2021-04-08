@@ -43,10 +43,10 @@ resource "aws_security_group" "allow-rabbitmq" {
 }
 
 resource "null_resource" "rabbitmq-schema" {
+  triggers = {
+    abc = timestamp()
+  }
   provisioner "remote-exec" {
-    triggers = {
-      abc = timestamp()
-    }
     connection {
       host = aws_instance.rabbitmq.private_ip
       user = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["SSH_USER"]
