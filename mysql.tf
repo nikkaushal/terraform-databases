@@ -21,8 +21,8 @@ resource "aws_rds_cluster" "mysql" {
   database_name                       = "defaultdb"
   master_username                     = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_USER"]
   master_password                     = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)["MYSQL_PASSWORD"]
-  backup_retention_period             = 5
-  preferred_backup_window             = "07:00-09:00"
+  backup_retention_period             = 0
+ // preferred_backup_window             = "07:00-09:00"
   db_cluster_parameter_group_name     = aws_rds_cluster_parameter_group.mysql.name
   vpc_security_group_ids              = [aws_security_group.allow-mysql.id]
   skip_final_snapshot                 = true
